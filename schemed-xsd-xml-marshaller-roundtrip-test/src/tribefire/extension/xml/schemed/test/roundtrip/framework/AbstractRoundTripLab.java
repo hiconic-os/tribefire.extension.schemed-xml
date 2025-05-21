@@ -56,12 +56,15 @@ public abstract class AbstractRoundTripLab extends AbstractXsdAnalyzerLab {
 	protected void runRoundTrip(File workingDirectory, String packageName, String xsdName, List<String> xmlNames, String modelName, String ... references ) {
 		runRoundTrip(workingDirectory, packageName, xsdName, xmlNames, modelName, 1, 0, references);
 	}
+	
 	/**
 	 * @param workingDirectory
 	 * @param packageName
 	 * @param xsdName
-	 * @param xmlName
+	 * @param xmlNames
 	 * @param modelName
+	 * @param repeats
+	 * @param threshold
 	 * @param references
 	 */
 	protected void runRoundTrip(File workingDirectory, String packageName, String xsdName, List<String> xmlNames, String modelName, int repeats, int threshold, String ... references ) {

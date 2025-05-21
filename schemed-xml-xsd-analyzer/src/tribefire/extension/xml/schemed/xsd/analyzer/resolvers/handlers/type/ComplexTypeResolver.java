@@ -16,10 +16,12 @@
 package tribefire.extension.xml.schemed.xsd.analyzer.resolvers.handlers.type;
 
 import java.util.List;
+import java.util.Set;
 
 import com.braintribe.logging.Logger;
 import com.braintribe.model.meta.GmEntityType;
 import com.braintribe.model.meta.GmProperty;
+import com.braintribe.model.meta.data.MetaData;
 
 import tribefire.extension.xml.schemed.mapping.metadata.EntityTypeMappingMetaData;
 import tribefire.extension.xml.schemed.model.xsd.All;
@@ -61,9 +63,20 @@ public class ComplexTypeResolver implements HasTokens{
 			if (complexType.getComplexContent() != null) {
 				TypeResolverResponse complexContentResponse = ComplexContentResolver.acquireEntityType( context, complexType.getComplexContent());
 				// remap
-				GmEntityType existingGmEntityType = (GmEntityType) complexContentResponse.getGmType();
-				GmEntityType remappedType = context.mappingContext.typeMapper.remapGmEntityType(complexType, existingGmEntityType, typeName);			
-				remappedType.getMetaData().addAll( existingGmEntityType.getMetaData());
+				GmEntityType nonMappedGmEntityType = (GmEntityType) complexContentResponse.getGmType();
+				GmEntityType remappedType = context.mappingContext.typeMapper.remapGmEntityType(complexType, nonMappedGmEntityType, typeName);			
+				Set<MetaData> nonMappedMetaData = nonMappedGmEntityType.getMetaData();
+				Set<MetaData> remappedMetaData = remappedType.getMetaData();
+				// merge the metadata ..
+				// property metadata?
+				// add the expected global id (it might get a virtual one)
+				remappedType.setGlobalId( producedGmEntityType.getGlobalId());
+				for (MetaData metadata : remappedMetaData) {
+					if (metadata instanceof EntityTypeMappingMetaData) {
+						EntityTypeMappingMetaData entMetaData = (EntityTypeMappingMetaData) metadata;
+						entMetaData.setType(remappedType);
+					}
+				}
 				complexContentResponse.setGmType(remappedType);				
 				complexContentResponse.setActualTypeName(typeName);
 				return complexContentResponse;

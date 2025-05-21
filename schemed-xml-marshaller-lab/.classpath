@@ -61,6 +61,7 @@
 	<classpathentry kind="lib" path="res/swift/pain/flat/input/PainTwoFlattenedModel-1.0.jar"/>
 	<classpathentry kind="lib" path="res/fides/flat/input/ClientModel-7.0.jar"/>
 	<classpathentry kind="lib" path="res/generics/attributesLang/flat/input/AttributesLangFlatModel-1.0.jar"/>
-	
+	<classpathentry kind="lib" path="res/ebxml/input/EbXml-6.1.jar"/>
+	<classpathentry kind="lib" path="res/generics/typeOverride/input/TypeOverride-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -156,7 +156,10 @@ public class MapperInfoForMetaModel {
 		if (infoForProperty == null)
 			return null;
 		
-		return infoForProperty.getMetaData().getElementType().getTypeSignature();
+		GmType elementType = infoForProperty.getMetaData().getElementType();
+		if (elementType == null)
+			return null;
+		return elementType.getTypeSignature();
 	}
 	
 	/**

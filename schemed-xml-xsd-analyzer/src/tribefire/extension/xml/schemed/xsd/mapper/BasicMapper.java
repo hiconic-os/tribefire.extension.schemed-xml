@@ -658,7 +658,8 @@ public class BasicMapper implements HasCommonTokens, HasTokens, AnyProcessingTok
 		// switch to new type, i.e. transfer data from old type, and the remove old type
 		GmEntityType currentMappedType = (GmEntityType) typeToGmTypeMap.get( type);
 		if (currentMappedType != null) {
-			entityType.getMetaData().addAll( currentMappedType.getMetaData());
+			//entityType.getMetaData().addAll( currentMappedType.getMetaData());
+			entityType.setMetaData( currentMappedType.getMetaData());
 			EntityTypeMappingMetaData entityTypeMappingMetaData = entityTypeToMappingMetadataMap.get(currentMappedType);
 			entityTypeToMappingMetadataMap.put(entityType, entityTypeMappingMetaData);
 			mappedTypes.remove(currentMappedType);

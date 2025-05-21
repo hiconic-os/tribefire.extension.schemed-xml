@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="root" type="RootType"/>
+	<xs:complexType name="RootType">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="first" type="BaseType" minOccurs="0"/>
+				<xs:element name="second" type="BaseType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BaseType">
+		<xs:sequence>
+			<xs:element name="first" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DerivationA">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:sequence>
+					<xs:element name="derivedA" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DerivationB">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:sequence>
+					<xs:element name="derivedB" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

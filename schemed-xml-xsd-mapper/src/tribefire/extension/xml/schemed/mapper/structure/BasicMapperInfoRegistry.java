@@ -1,5 +1,5 @@
 // ============================================================================
-// Copyright BRAINTRIBE TECHNOLOGY GMBH, Austria, 2002-2022
+// Copyright BRAINTRIBE TECHNOLOGY GMBH, Autria, 2002-2022
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -96,11 +96,10 @@ public class BasicMapperInfoRegistry implements MapperInfoRegistry {
 		List<ModelMappingMetaData> mmmds = modelBuilder.meta( ModelMappingMetaData.T).list();
 		if (mmmds == null || mmmds.size() == 0)
 			return;		
-		if (mmmds.size() > 0) {
-			mim.setMetaData( mmmds.get(0));
+		if (mmmds.size() > 0) {			
+			ModelMappingMetaData metaData = mmmds.get(0);
+			mim.setMetaData( metaData);			
 		}
-				
-		
 		Set<GmCustomTypeOverride> typeOverrides = metaModel.getTypeOverrides();
 		for (GmCustomTypeOverride override : typeOverrides) {
 			if (override.isGmEntityOverride()) {
@@ -211,9 +210,8 @@ public class BasicMapperInfoRegistry implements MapperInfoRegistry {
 				}
 				mim.addTypeInfo(mient);
 			}
-		}
-		mim.setupContainerMap();	
-						
+		}	
+		mim.setupContainerMap();				
 	}
 	
 	/* (non-Javadoc)
@@ -320,6 +318,7 @@ public class BasicMapperInfoRegistry implements MapperInfoRegistry {
 		MapperInfoForEntitytype info = mim.getTypeInfo(entityType);
 		if (info == null)
 			return null;
+				
 		return info.getMetaData();
 	}
 	
@@ -544,6 +543,12 @@ public class BasicMapperInfoRegistry implements MapperInfoRegistry {
 			List<String> signatures = namespaceUriToSignatureMap.get(uri);
 			if (signatures == null)
 				return null;		
+			for (String signature : signatures)  {
+				if (signature.endsWith( name)) {
+					return signature;
+				}
+			}
+			
 		}
 		/*
 		
@@ -589,5 +594,6 @@ public class BasicMapperInfoRegistry implements MapperInfoRegistry {
 		*/
 		return null;		
 	}
+	
 	
 }

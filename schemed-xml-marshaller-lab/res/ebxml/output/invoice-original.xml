@@ -1,0 +1,377 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ns1:Invoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns1="http://www.ebinterface.at/schema/6p1/" DocumentType="Invoice" GeneratingSystem="Leva+" InvoiceCurrency="EUR" Language="DE">
+	<ns1:InvoiceNumber>40365246</ns1:InvoiceNumber>
+	<ns1:InvoiceDate>2025-03-25</ns1:InvoiceDate>
+	<ns1:Delivery>
+		<ns1:Period>
+			<ns1:FromDate>2025-03-24</ns1:FromDate>
+			<ns1:ToDate>2025-03-24</ns1:ToDate>
+		</ns1:Period>
+		<ns1:Address>
+			<ns1:Name>BVH Halle Gewerbepark II Euronova</ns1:Name>
+			<ns1:Street>Industriestra&amp;#223;e 15</ns1:Street>
+			<ns1:Town>Arnoldstein</ns1:Town>
+			<ns1:ZIP>9601</ns1:ZIP>
+			<ns1:Country CountryCode="AT">&#214;sterreich</ns1:Country>
+		</ns1:Address>
+	</ns1:Delivery>
+	<ns1:Biller>
+		<ns1:VATIdentificationNumber>ATU19101308</ns1:VATIdentificationNumber>
+		<ns1:Address>
+			<ns1:Name>Prangl Gesellschaft m.b.H.</ns1:Name>
+			<ns1:Street>Josef-Prangl-Strasse 8</ns1:Street>
+			<ns1:Town>Wien</ns1:Town>
+			<ns1:ZIP>1230</ns1:ZIP>
+			<ns1:Country CountryCode="AT">&#214;sterreich</ns1:Country>
+			<ns1:Email>markus.herzog@prangl.at</ns1:Email>
+		</ns1:Address>
+		<ns1:Contact>
+			<ns1:Name>Markus Herzog</ns1:Name>
+		</ns1:Contact>
+		<ns1:InvoiceRecipientsBillerID>0</ns1:InvoiceRecipientsBillerID>
+	</ns1:Biller>
+	<ns1:InvoiceRecipient>
+		<ns1:VATIdentificationNumber>ATU36891100</ns1:VATIdentificationNumber>
+		<ns1:OrderReference>
+			<ns1:OrderID>1030106862</ns1:OrderID>
+			<ns1:ReferenceDate>2025-02-19</ns1:ReferenceDate>
+			<ns1:Description>Bestellung.: 4502385250 / Kontierung.: 1030106862</ns1:Description>
+		</ns1:OrderReference>
+		<ns1:Address>
+			<ns1:Name>PORR Bau GmbH</ns1:Name>
+			<ns1:Street>Absberggasse 47</ns1:Street>
+			<ns1:Town>Wien</ns1:Town>
+			<ns1:ZIP>Absberggasse 47</ns1:ZIP>
+			<ns1:Country CountryCode="AT">&#214;sterreich</ns1:Country>
+		</ns1:Address>
+		<ns1:Contact>
+			<ns1:Name></ns1:Name>
+		</ns1:Contact>
+	</ns1:InvoiceRecipient>
+	<ns1:Details>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>Teleskopkran 80 t</ns1:Description>
+				<ns1:Quantity Unit="Std">96.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">111.54</ns1:UnitPrice>
+				<ns1:ReductionAndSurchargeListLineItemDetails>
+					<ns1:ReductionListLineItem xsi:type="ns1:ReductionAndSurchargeType">
+						<ns1:BaseAmount>10707.84</ns1:BaseAmount>
+						<ns1:Percentage>9.45</ns1:Percentage>
+						<ns1:TaxItem>
+							<ns1:TaxableAmount>1011.89</ns1:TaxableAmount>
+							<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+						</ns1:TaxItem>
+					</ns1:ReductionListLineItem>
+				</ns1:ReductionAndSurchargeListLineItemDetails>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>1</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>9695.95</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>9695.95</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>&amp;#220;berstundenzuschlag 50 % Abends</ns1:Description>
+				<ns1:Quantity Unit="Std">2.5</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">17.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>2</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>42.5</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>42.5</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>2. Winde</ns1:Description>
+				<ns1:Quantity Unit="Pau">1.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">0.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>3</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>0.0</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>0.0</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>KV Mindestmietdauer Differenz</ns1:Description>
+				<ns1:Quantity Unit="Std">15.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">111.54</ns1:UnitPrice>
+				<ns1:ReductionAndSurchargeListLineItemDetails>
+					<ns1:ReductionListLineItem xsi:type="ns1:ReductionAndSurchargeType">
+						<ns1:BaseAmount>1673.1</ns1:BaseAmount>
+						<ns1:Percentage>9.45</ns1:Percentage>
+						<ns1:TaxItem>
+							<ns1:TaxableAmount>158.11</ns1:TaxableAmount>
+							<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+						</ns1:TaxItem>
+					</ns1:ReductionListLineItem>
+				</ns1:ReductionAndSurchargeListLineItemDetails>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>4</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>1514.99</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>1514.99</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>KV Mindestmietdauer Differenz</ns1:Description>
+				<ns1:Quantity Unit="Std">32.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">111.54</ns1:UnitPrice>
+				<ns1:ReductionAndSurchargeListLineItemDetails>
+					<ns1:ReductionListLineItem xsi:type="ns1:ReductionAndSurchargeType">
+						<ns1:BaseAmount>3569.28</ns1:BaseAmount>
+						<ns1:Percentage>9.45</ns1:Percentage>
+						<ns1:TaxItem>
+							<ns1:TaxableAmount>337.3</ns1:TaxableAmount>
+							<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+						</ns1:TaxItem>
+					</ns1:ReductionListLineItem>
+				</ns1:ReductionAndSurchargeListLineItemDetails>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>5</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>3231.98</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>3231.98</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>Teleskopkran 80 t</ns1:Description>
+				<ns1:Quantity Unit="Std">3.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">111.54</ns1:UnitPrice>
+				<ns1:ReductionAndSurchargeListLineItemDetails>
+					<ns1:ReductionListLineItem xsi:type="ns1:ReductionAndSurchargeType">
+						<ns1:BaseAmount>334.62</ns1:BaseAmount>
+						<ns1:Percentage>9.45</ns1:Percentage>
+						<ns1:TaxItem>
+							<ns1:TaxableAmount>31.62</ns1:TaxableAmount>
+							<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+						</ns1:TaxItem>
+					</ns1:ReductionListLineItem>
+				</ns1:ReductionAndSurchargeListLineItemDetails>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>6</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>303.0</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>303.0</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>Aufschlag An-/Abfahrt</ns1:Description>
+				<ns1:Quantity Unit="%">15.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">45.45</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>7</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>681.75</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>681.75</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>KV Road Pricing</ns1:Description>
+				<ns1:Quantity Unit="Stk">1.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">97.87</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>8</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>97.87</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>97.87</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>&amp;#220;berstundenzuschlag 50 % Abends</ns1:Description>
+				<ns1:Quantity Unit="Std">1.5</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">17.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>9</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>25.5</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>25.5</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>Begleitung Anfahrt</ns1:Description>
+				<ns1:Quantity Unit="Pau">1.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">150.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>10</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>150.0</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>150.0</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>Begleitung Abfahrt</ns1:Description>
+				<ns1:Quantity Unit="Pau">1.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">150.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>11</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>150.0</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>150.0</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>&amp;#220;berstundenzuschlag 50 % Abends</ns1:Description>
+				<ns1:Quantity Unit="Std">1.5</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">17.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>12</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>25.5</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>25.5</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>Ballasttransport</ns1:Description>
+				<ns1:Quantity Unit="Pau">1.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">500.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>13</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>500.0</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>500.0</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>&amp;#220;berstundenzuschlag 50 % Abends</ns1:Description>
+				<ns1:Quantity Unit="Std">1.5</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">17.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>18</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>25.5</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>25.5</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>Fahrertransfer / N&amp;#228;chtigung bis 75 km</ns1:Description>
+				<ns1:Quantity Unit="Tag">12.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">55.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>19</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>660.0</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>660.0</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+		<ns1:ItemList>
+			<ns1:ListLineItem>
+				<ns1:Description>KV Treibstoffzustellung</ns1:Description>
+				<ns1:Quantity Unit="Pau">1.0</ns1:Quantity>
+				<ns1:UnitPrice BaseQuantity="1.0">0.0</ns1:UnitPrice>
+				<ns1:InvoiceRecipientsOrderReference>
+					<ns1:OrderID>1030106862</ns1:OrderID>
+					<ns1:OrderPositionNumber>20</ns1:OrderPositionNumber>
+				</ns1:InvoiceRecipientsOrderReference>
+				<ns1:TaxItem>
+					<ns1:TaxableAmount>0.0</ns1:TaxableAmount>
+					<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+				</ns1:TaxItem>
+				<ns1:LineItemAmount>0.0</ns1:LineItemAmount>
+			</ns1:ListLineItem>
+		</ns1:ItemList>
+	</ns1:Details>
+	<ns1:Tax>
+		<ns1:TaxItem>
+			<ns1:TaxableAmount>16468.24</ns1:TaxableAmount>
+			<ns1:TaxPercent TaxCategoryCode="AE">0.0</ns1:TaxPercent>
+			<ns1:TaxAmount>0.0</ns1:TaxAmount>
+		</ns1:TaxItem>
+	</ns1:Tax>
+	<ns1:TotalGrossAmount>16468.24</ns1:TotalGrossAmount>
+	<ns1:PayableAmount>16468.24</ns1:PayableAmount>
+	<ns1:PaymentMethod>
+		<ns1:Comment>Wir ersuchen um termingerechte Bezahlung.</ns1:Comment>
+		<ns1:UniversalBankTransaction>
+			<ns1:BeneficiaryAccount>
+				<ns1:BankName>UniCredit Bank Autria</ns1:BankName>
+				<ns1:BIC>BKAUATWW</ns1:BIC>
+				<ns1:IBAN>AT221100001783103300</ns1:IBAN>
+				<ns1:BankAccountOwner>Prangl Gesselschaft m.b.H.</ns1:BankAccountOwner>
+			</ns1:BeneficiaryAccount>
+			<ns1:PaymentReference CheckSum="X">40365246</ns1:PaymentReference>
+		</ns1:UniversalBankTransaction>
+	</ns1:PaymentMethod>
+	<ns1:PaymentConditions>
+		<ns1:DueDate>2025-05-24</ns1:DueDate>
+		<ns1:Discount>
+			<ns1:PaymentDate>2025-04-24</ns1:PaymentDate>
+			<ns1:Percentage>3.0</ns1:Percentage>
+		</ns1:Discount>
+	</ns1:PaymentConditions>
+</ns1:Invoice>

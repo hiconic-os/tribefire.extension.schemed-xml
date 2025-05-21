@@ -32,5 +32,13 @@ public interface QName extends GenericEntity {
 	
 	String getNamespaceUri();
 	void setNamespaceUri( String uri);
+	
+	public static QName from( javax.xml.namespace.QName qname) {
+		QName result = T.create();
+		result.setNamespaceUri( qname.getNamespaceURI());
+		result.setLocalPart( qname.getLocalPart());
+		result.setPrefix( qname.getPrefix());
+		return result;		
+	}
 		
 }

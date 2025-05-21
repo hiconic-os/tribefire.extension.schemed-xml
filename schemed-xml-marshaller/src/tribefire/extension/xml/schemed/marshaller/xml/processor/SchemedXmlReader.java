@@ -32,6 +32,7 @@ import org.xml.sax.SAXException;
 
 import com.braintribe.cc.lcd.CodingMap;
 import com.braintribe.codec.marshaller.api.GmDeserializationOptions;
+import com.braintribe.common.lcd.Pair;
 import com.braintribe.logging.Logger;
 import com.braintribe.model.generic.GMF;
 import com.braintribe.model.generic.GenericEntity;
@@ -72,7 +73,7 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 	private static Logger log = Logger.getLogger(SchemedXmlReader.class);
 	private Stack<ParsingStackEntry> stack = new Stack<>();
 	private MapperInfoRegistry mappingRegistry;
-	private String prefixForXsdSchema;	
+	private Pair<String,String> qnameXsdSchemaId;
 	private Map<String, String> prefixToNamespaceMap;
 	private Map<String, PropertyMappingMetaDataCacheElement> propertyMappingMetaDataCache = new HashMap<>();	
 	private GenericEntity root;
@@ -120,18 +121,16 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 		Map<QName, String> attributes = readAttributes(reader);
 		
 		// find the standard xsd namespace/prefix
-		prefixForXsdSchema = determineXsdNamespacePrefix( reader);
+		qnameXsdSchemaId = determineXsdNamespacePrefix( reader);
 		
 		prefixToNamespaceMap = getImportedNamespaces( reader);
 		
 		
 		
 		// check if a polymorph container type is required
-		QName tag = null;
-		tag = determinePolymorphType( prefixForXsdSchema, attributes);
-		if (tag == null) {
-			tag = reader.getName();
-		}
+		QName tag = reader.getName();
+		
+		QName overrideViaXmlTypeAttribute = determinePolymorphType( attributes); 
 		
 		String typeSignature = determineContainerTypeSignature(tag);
 		
@@ -210,12 +209,10 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 
 		Map<QName, String> attributes = readAttributes(reader);
 						
-		String extendedTypeSignature = null;
-		QName tag = reader.getName();
-		tag = determinePolymorphType( prefixForXsdSchema, attributes);
-		if (tag == null) {
-			tag = reader.getName();
-		}
+
+		QName tag = reader.getName();		
+		QName overrideViaXmlTypeAttribute = determinePolymorphType( attributes); 
+		
 		ParsingStackEntry parentEntry = stack.peek();
 		
 		ParsingStackEntry entry = new ParsingStackEntry();
@@ -239,54 +236,60 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 		}
 		String typeSignature = ANY_TYPE_SIGNATURE;
 		boolean overrideType = false;
-		if (extendedTypeSignature == null) {
-			typeSignature = mappingRegistry.getTypeSignatureOfPropertyType( parentTypeSignature, QNameExpert.parse(tag), false);
-			// if we have no direct hit, it probably is a converted entity such as a collection 
-			if (typeSignature == null) {
-				// need to look it up from somewhere..
-				typeSignature = mappingRegistry.getTypeSignatureOfPropertyElementType( parentTypeSignature, QNameExpert.parse(tag));
-			}			
-			if (typeSignature == null) {
-				if (parentEntry.isUndefined() == false) {
-					// 
-					// check if this is an any type property
-					//
-					tribefire.extension.xml.schemed.model.xsd.QName anyTuple = QNameExpert.parse( "any");
-					typeSignature = mappingRegistry.getTypeSignatureOfPropertyType( parentTypeSignature, anyTuple, false);
-					// no any type, might be a nested anytype 
-					if (typeSignature == null) {
-						if (parentTypeSignature.equalsIgnoreCase( ANY_TYPE_SIGNATURE)) {
-							typeSignature = ANY_TYPE_SIGNATURE;
-						}
+		
+
+		typeSignature = mappingRegistry.getTypeSignatureOfPropertyType( parentTypeSignature, QNameExpert.parse(tag), false);
+		if (overrideViaXmlTypeAttribute != null) {
+			tribefire.extension.xml.schemed.model.xsd.QName convertedQName = tribefire.extension.xml.schemed.model.xsd.QName.from(overrideViaXmlTypeAttribute);
+			convertedQName.setNamespaceUri( tag.getNamespaceURI());
+			typeSignature = mappingRegistry.getMappedTypeSignature(convertedQName, prefixToNamespaceMap);
+		}
+		// if we have no direct hit, it probably is a converted entity such as a collection 
+		if (typeSignature == null) {
+			// need to look it up from somewhere..
+			typeSignature = mappingRegistry.getTypeSignatureOfPropertyElementType( parentTypeSignature, QNameExpert.parse(tag));
+		}			
+		if (typeSignature == null) {
+			if (parentEntry.isUndefined() == false) {
+				// 
+				// check if this is an any type property
+				//
+				tribefire.extension.xml.schemed.model.xsd.QName anyTuple = QNameExpert.parse( "any");
+				typeSignature = mappingRegistry.getTypeSignatureOfPropertyType( parentTypeSignature, anyTuple, false);
+				// no any type, might be a nested anytype 
+				if (typeSignature == null) {
+					if (parentTypeSignature.equalsIgnoreCase( ANY_TYPE_SIGNATURE)) {
+						typeSignature = ANY_TYPE_SIGNATURE;
 					}
-					// still none? abort
-					if (typeSignature == null) {
-						String msg = "no stored type found for property [" + tag + "] of parent [" + parentType.getTypeSignature() + "]";
-						log.error( msg);
-						throw new SchemedXmlMarshallingException( msg);	
-					} 
-					
-					if (log.isDebugEnabled()) {
-						log.debug("any type declaration induced for ["+ tag + "]");							
-					}
-					entry.setAnyType(true);
-					if( parentTypeSignature.equalsIgnoreCase( ANY_TYPE_SIGNATURE)) {
-						String cacheKey = parentType.getTypeSignature() + ":" + MD_ANY_PROPERTIES;
-						mappingMd = getPropertyMapping(new QName( MD_ANY_PROPERTIES), parentType, cacheKey, false);
-					}
-					else {					
-						String cacheKey = parentType.getTypeSignature() + ":any";
-						mappingMd = getPropertyMapping(new QName("any"), parentType, cacheKey, false);
-					}
-					
-					
 				}
-				else {
-					entry.setUndefined(true);
-					mappingMd = parentEntry.getPropertyMapping();
-				}				
+				// still none? abort
+				if (typeSignature == null) {
+					String msg = "no stored type found for property [" + tag + "] of parent [" + parentType.getTypeSignature() + "]";
+					log.error( msg);
+					throw new SchemedXmlMarshallingException( msg);	
+				} 
+				
+				if (log.isDebugEnabled()) {
+					log.debug("any type declaration induced for ["+ tag + "]");							
+				}
+				entry.setAnyType(true);
+				if( parentTypeSignature.equalsIgnoreCase( ANY_TYPE_SIGNATURE)) {
+					String cacheKey = parentType.getTypeSignature() + ":" + MD_ANY_PROPERTIES;
+					mappingMd = getPropertyMapping(new QName( MD_ANY_PROPERTIES), parentType, cacheKey, false);
+				}
+				else {					
+					String cacheKey = parentType.getTypeSignature() + ":any";
+					mappingMd = getPropertyMapping(new QName("any"), parentType, cacheKey, false);
+				}
+				
+				
 			}
-		}	
+			else {
+				entry.setUndefined(true);
+				mappingMd = parentEntry.getPropertyMapping();
+			}				
+		}
+		
 		
 		// check for simple type
 		GmEntityType gmEntityType = null;
@@ -313,7 +316,7 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 			else if (mappingMd.gmPropertyType instanceof GmCollectionType) {
 				GenericModelType eType = mappingMd.elementType;
 				if (eType instanceof SimpleType == false) {
-					if (!overrideType) {
+					if (!overrideType && overrideViaXmlTypeAttribute == null) {
 						typeSignature = eType.getTypeSignature();
 					}
 					gmEntityType = mappingRegistry.getMatchingEntityType(typeSignature);			
@@ -337,6 +340,9 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 			assignAnyAttributes( gmEntityType, instance, attributes, tag);
 			
 		}
+		
+		//
+		
 						 			
 		// create new ParsingStackEntry and push to stack			
 		entry.setGmEntityType( gmEntityType);
@@ -413,12 +419,12 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 	 * @param attributes - the map of {@link QName} to {@link String} attributes (coding map) 
 	 * @return - the {@link QName}
 	 */
-	private QName determinePolymorphType(String xsdPrefix, Map<QName, String> attributes) {
+	private QName determinePolymorphType( Map<QName, String> attributes) {
 		// no use of the schema in this xml, ergo no type attributes 
-		if (xsdPrefix == null) {
+		if (qnameXsdSchemaId == null) {
 			return null;
 		}
-		QName polymorphType = new QName(xsdPrefix, "type");
+		QName polymorphType = new QName(qnameXsdSchemaId.first, "type", qnameXsdSchemaId.second);
 		String polymorphTypeName = attributes.get(polymorphType);
 		if (polymorphTypeName != null)
 			return new QName( polymorphTypeName);
@@ -430,13 +436,13 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 	 * @param attributes - the map of {@link QName} to {@link String} attributes (coding map)
 	 * @return - the prefix used for XSD 
 	 */
-	private String determineXsdNamespacePrefix(XMLStreamReader reader) {				 
+	private Pair<String,String> determineXsdNamespacePrefix(XMLStreamReader reader) {				 
 		int namespaceCount = reader.getNamespaceCount();
 		for (int i = 0; i < namespaceCount; i++) {							
 			String namespacePrefix = reader.getNamespacePrefix(i);
 			String namespaceURI = reader.getNamespaceURI(i);
 			if (namespaceURI.equalsIgnoreCase(NAMESPACE_SCHEMA)) {
-				return namespacePrefix;			
+				return Pair.of(namespaceURI,  namespacePrefix);			
 			}
 		}		
 		return null;
@@ -494,6 +500,10 @@ public class SchemedXmlReader implements HasTokens, AnyProcessingTokens{
 			
 			if (qName.getPrefix().equals("xml")) {
 				name = "xml_" + name;
+			}
+			// check for schema-based attributes, such as 'xsi:' values - not transfered to properties
+			if (qName.getNamespaceURI().equals( qnameXsdSchemaId.first)) {
+				continue;
 			}
 			
 			if (Arrays.asList(ATTRIBUTES_TO_IGNORE).contains( name)) {

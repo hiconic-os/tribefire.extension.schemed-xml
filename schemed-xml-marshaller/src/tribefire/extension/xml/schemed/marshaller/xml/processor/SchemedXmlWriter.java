@@ -187,11 +187,16 @@ public class SchemedXmlWriter implements HasTokens, AnyProcessingTokens {
 			throw new SchemedXmlMarshallingException(e);
 		}
 		
+		// if type's a derivation assigned to a base type, add the 'xsi:type' attribute, 
 		if (isPolymorph) {
-			// set the correct xsiNamespace
-			String name = mappingMetaData.getXsdName();		
-			// TODO: attach xsi prefix 
-			writer.writeAttribute("type", name);
+			String name = mappingMetaData.getXsdName();		 
+			// add proper namespace to type 					
+			for (Entry<String,Namespace> entry : mappingRegistry.getTargetNamespaces().entrySet()) {
+				if (entry.getKey().equals( namespace)) {
+					name = entry.getValue().getPrefix() + ":" + name;
+				}
+			}
+			writer.writeAttribute(schemaNamespacePrefix + ":type", name);			
 		}
 		//
 		// main container element
@@ -280,6 +285,10 @@ public class SchemedXmlWriter implements HasTokens, AnyProcessingTokens {
 		writer.writeEndElement();
 					
 	}
+	
+	private String getCorrectNamespacedNameOfType(String type) {
+		return null;
+	}
 
 	private void addDocumentLevelAttributes() throws XMLStreamException {
 		// if we're the main signature, we have to add the xsi namespace
@@ -295,6 +304,7 @@ public class SchemedXmlWriter implements HasTokens, AnyProcessingTokens {
 			String prefix = subNamespace.getPrefix();
 			if (prefix == null) {
 				prefix = "ns" + i++;
+				subNamespace.setPrefix(prefix);
 			}
 			writer.writeAttribute( "xmlns:" + prefix, subNamespace.getUri());								
 		}
